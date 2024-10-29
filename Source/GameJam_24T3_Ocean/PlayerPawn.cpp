@@ -21,7 +21,7 @@ APlayerPawn::APlayerPawn()
 	PlayerInteractionComponent = CreateDefaultSubobject<UPlayerInteractionComponent>(TEXT("Player Interaction Component"));
 
 	Sphere = CreateDefaultSubobject<USphereComponent>(TEXT("Sphere"));
-	Sphere->SetupAttachment(GetRootComponent());
+	Sphere->SetupAttachment(Camera);
 }
 
 // Called when the game starts or when spawned

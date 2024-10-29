@@ -31,4 +31,10 @@ public:
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	class UCameraComponent* Camera;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	class UPlayerInteractionComponent* PlayerInteractionComponent;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	class USphereComponent* Sphere;
 };

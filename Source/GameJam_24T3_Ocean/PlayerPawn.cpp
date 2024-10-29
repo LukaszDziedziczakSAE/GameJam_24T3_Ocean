@@ -4,6 +4,8 @@
 #include "PlayerPawn.h"
 #include "Camera/CameraComponent.h"
 #include "GameFramework/FloatingPawnMovement.h"
+#include "Components/SphereComponent.h"
+#include "PlayerInteractionComponent.h"
 
 // Sets default values
 APlayerPawn::APlayerPawn()
@@ -15,6 +17,11 @@ APlayerPawn::APlayerPawn()
 
 	Camera = CreateDefaultSubobject<UCameraComponent>(TEXT("Camera"));
 	Camera->SetupAttachment(GetRootComponent());
+
+	PlayerInteractionComponent = CreateDefaultSubobject<UPlayerInteractionComponent>(TEXT("Player Interaction Component"));
+
+	Sphere = CreateDefaultSubobject<USphereComponent>(TEXT("Sphere"));
+	Sphere->SetupAttachment(GetRootComponent());
 }
 
 // Called when the game starts or when spawned

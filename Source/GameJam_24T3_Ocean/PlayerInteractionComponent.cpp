@@ -4,6 +4,9 @@
 #include "PlayerInteractionComponent.h"
 #include "Kismet/GameplayStatics.h"
 #include "CollisionQueryParams.h"
+#include "Kismet/KismetSystemLibrary.h"
+#include "Kismet/KismetMathLibrary.h"
+#include "Kismet/GameplayStatics.h"
 
 // Sets default values for this component's properties
 UPlayerInteractionComponent::UPlayerInteractionComponent()
@@ -31,33 +34,33 @@ void UPlayerInteractionComponent::TickComponent(float DeltaTime, ELevelTick Tick
 {
 	Super::TickComponent(DeltaTime, TickType, ThisTickFunction);
 
-	//FCollisionQueryParams TraceParams = FCollisionQueryParams(FName(TEXT("RV_Trace")), true, this);
-	//TraceParams.bTraceComplex = true;
-	//TraceParams.bReturnPhysicalMaterial = true;
-	//TraceParams.bTraceIntoSubComponents = true;
+	FCollisionQueryParams TraceParams = FCollisionQueryParams();
+	TraceParams.bTraceComplex = true;
+	TraceParams.bReturnPhysicalMaterial = true;
+	TraceParams.bTraceIntoSubComponents = true;
 
-	////Re-initialize hit info
-	//FHitResult HitResult(ForceInit);
+	//Re-initialize hit info
+	FHitResult HitResult(ForceInit);
 
-	//APlayerCameraManager* PlayerCameraManager = UGameplayStatics::GetPlayerCameraManager(GetWorld(), 0);
-	//FVector Start = PlayerCameraManager->GetCameraLocation();
-	//FVector End = Start + (PlayerCameraManager->GetActorForwardVector() * TraceLength);
+	APlayerCameraManager* PlayerCameraManager = UGameplayStatics::GetPlayerCameraManager(GetWorld(), 0);
+	FVector Start = PlayerCameraManager->GetCameraLocation();
+	FVector End = Start + (PlayerCameraManager->GetActorForwardVector() * TraceLength);
 
-	////call GetWorld() from within an actor extending class
-	//if (GetWorld()->LineTraceSingleByChannel(
-	//	HitResult,		//result
-	//	Start,	//start
-	//	End, //end
-	//	ECC_GameTraceChannel1, //collision channel (ECC_GameTraceChannel1)
-	//	TraceParams
-	//))
-	//{
-	//	UE_LOG(LogTemp, Warning, TEXT("Hit %s"), *HitResult.GetActor()->GetName());
-	//}
+	//call GetWorld() from within an actor extending class
+	if (GetWorld()->LineTraceSingleByChannel(
+		HitResult,		//result
+		Start,	//start
+		End, //end
+		ECC_GameTraceChannel1, //collision channel (ECC_GameTraceChannel1)
+		TraceParams
+	))
+	{
+		UE_LOG(LogTemp, Warning, TEXT("Hit %s"), *HitResult.GetActor()->GetName());
+	}
 
-	//else
-	//{
-	//	UE_LOG(LogTemp, Warning, TEXT("No Hit"));
-	//}
+	else
+	{
+		UE_LOG(LogTemp, Warning, TEXT("No Hit"));
+	}
 }
 

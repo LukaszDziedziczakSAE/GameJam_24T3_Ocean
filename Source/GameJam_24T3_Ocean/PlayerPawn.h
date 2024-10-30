@@ -39,8 +39,11 @@ public:
 	class USphereComponent* Sphere;
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
-	FVector TargetLocation;
+	FVector MovementInput;
 
 	UFUNCTION(BlueprintCallable)
 	void AddMovement(FVector Movement);
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	float MovementDampening{ 0.05f };
 };

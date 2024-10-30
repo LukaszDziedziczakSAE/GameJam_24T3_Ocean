@@ -14,14 +14,16 @@ APlayerPawn::APlayerPawn()
 	PrimaryActorTick.bCanEverTick = true;
 
 	FloatingPawnMovement = CreateDefaultSubobject<UFloatingPawnMovement>(TEXT("Floating Pawn Movement"));
+	
+	Sphere = CreateDefaultSubobject<USphereComponent>(TEXT("Sphere"));
+	SetRootComponent(Sphere);
+	Sphere->SetSphereRadius(50.0f);
 
 	Camera = CreateDefaultSubobject<UCameraComponent>(TEXT("Camera"));
-	Camera->SetupAttachment(GetRootComponent());
+	Camera->SetupAttachment(Sphere);
 
 	PlayerInteractionComponent = CreateDefaultSubobject<UPlayerInteractionComponent>(TEXT("Player Interaction Component"));
 
-	Sphere = CreateDefaultSubobject<USphereComponent>(TEXT("Sphere"));
-	Sphere->SetupAttachment(Camera);
 }
 
 // Called when the game starts or when spawned
@@ -29,7 +31,7 @@ void APlayerPawn::BeginPlay()
 {
 	Super::BeginPlay();
 	
-	TargetLocation = GetActorLocation();
+	
 }
 
 // Called every frame
@@ -37,12 +39,8 @@ void APlayerPawn::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
 
-	//if (TargetLocation != GetActorLocation())
-	//{
-	//	//FVector TargetWorldPosition = FMath::Lerp(GetActorLocation(), TargetLocation, 0.1f);
-	//	FloatingPawnMovement->AddInputVector(TargetLocation);
-	//}
-	
+	MovementInput = FMath::Lerp(MovementInput, FVector::ZeroVector, MovementDampening);
+	if (MovementInput != FVector::ZeroVector) AddMovementInput(MovementInput);
 }
 
 // Called to bind functionality to input

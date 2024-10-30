@@ -14,10 +14,16 @@ class GAMEJAM_24T3_OCEAN_API AOcean_GameMode : public AGameModeBase
 {
 	GENERATED_BODY()
 
+protected:
+	virtual void BeginPlay() override;
+
+	UFUNCTION()
+	void PlayAmbientSound();
 
 public:
 	UFUNCTION(BlueprintCallable, BlueprintNativeEvent)
 	void EndGame();
 
-
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	USoundBase* AmbientSounds;
 };

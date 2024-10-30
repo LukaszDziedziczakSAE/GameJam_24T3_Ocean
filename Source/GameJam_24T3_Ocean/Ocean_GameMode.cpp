@@ -3,6 +3,7 @@
 
 #include "Ocean_GameMode.h"
 #include "Ocean_HUD.h"
+#include "Kismet/GameplayStatics.h"
 
 void AOcean_GameMode::EndGame_Implementation()
 {
@@ -10,4 +11,21 @@ void AOcean_GameMode::EndGame_Implementation()
 	HUD->ShowEndScreen();
 
 
+}
+
+void AOcean_GameMode::BeginPlay()
+{
+	Super::BeginPlay();
+
+	PlayAmbientSound();
+}
+
+void AOcean_GameMode::PlayAmbientSound()
+{
+	if (AmbientSounds == nullptr) return;
+
+	float t = AmbientSounds->GetDuration();
+	UGameplayStatics::PlaySound2D(GetWorld(), AmbientSounds);
+	FTimerHandle AttackTimerHandle;
+	GetWorld()->GetTimerManager().SetTimer(AttackTimerHandle, this, &AOcean_GameMode::PlayAmbientSound, t, false);
 }

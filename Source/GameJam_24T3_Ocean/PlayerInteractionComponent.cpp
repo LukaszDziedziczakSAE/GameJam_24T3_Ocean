@@ -25,7 +25,9 @@ void UPlayerInteractionComponent::BeginPlay()
 {
 	Super::BeginPlay();
 
-	// ...
+	TArray<AActor*> AllPickups;
+	UGameplayStatics::GetAllActorsOfClass(GetWorld(), APickupActor::StaticClass(), AllPickups);
+	TotalGems = AllPickups.Num();
 	
 }
 

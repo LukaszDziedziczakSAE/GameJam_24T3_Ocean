@@ -9,11 +9,15 @@ APickupActor::APickupActor()
 {
  	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
+
+	RootComp = CreateDefaultSubobject<USceneComponent>(TEXT("Root Component"));
+	SetRootComponent(RootComp);
+
 	ActorMesh = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("Mesh"));
-	SetRootComponent(ActorMesh);
+	ActorMesh->SetupAttachment(RootComp);
 
 	Sphere = CreateDefaultSubobject<USphereComponent>(TEXT("Sphere"));
-	Sphere->SetupAttachment(ActorMesh);
+	Sphere->SetupAttachment(RootComp);
 
 }
 

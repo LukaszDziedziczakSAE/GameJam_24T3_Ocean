@@ -16,6 +16,9 @@ public:
 	APickupActor();
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	USceneComponent* RootComp;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	UStaticMeshComponent* ActorMesh;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)

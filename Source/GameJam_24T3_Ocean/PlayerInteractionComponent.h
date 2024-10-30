@@ -41,4 +41,8 @@ public:
 	UFUNCTION(BlueprintPure)
 	bool CanPickup();
 
+	UFUNCTION(BlueprintPure)
+	bool AllGemsCollected();
+
+
 };

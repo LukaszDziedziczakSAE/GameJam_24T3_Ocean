@@ -54,6 +54,7 @@ void APlayerPawn::SetupPlayerInputComponent(UInputComponent* PlayerInputComponen
 
 void APlayerPawn::AddMovement(FVector Movement)
 {
-	FloatingPawnMovement->AddInputVector(Movement);
+	//FloatingPawnMovement->AddInputVector(Movement);
+	AddMovementInput(Movement);
 }
 

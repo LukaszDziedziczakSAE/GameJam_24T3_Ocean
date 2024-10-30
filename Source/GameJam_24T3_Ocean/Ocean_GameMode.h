@@ -13,4 +13,11 @@ UCLASS()
 class GAMEJAM_24T3_OCEAN_API AOcean_GameMode : public AGameModeBase
 {
 	GENERATED_BODY()
+
+
+public:
+	UFUNCTION(BlueprintCallable, BlueprintNativeEvent)
+	void EndGame();
+
+
 };

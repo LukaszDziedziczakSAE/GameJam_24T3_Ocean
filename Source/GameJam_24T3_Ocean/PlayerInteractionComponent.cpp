@@ -94,3 +94,9 @@ bool UPlayerInteractionComponent::CanPickup()
 	return Pickup != nullptr;
 }
 
+bool UPlayerInteractionComponent::AllGemsCollected()
+{
+	if (TotalGems == 0)return false;
+	return TotalGems == GemsCollected;
+}
+

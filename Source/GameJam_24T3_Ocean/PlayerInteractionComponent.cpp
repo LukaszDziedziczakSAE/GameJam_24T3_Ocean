@@ -8,6 +8,7 @@
 #include "Kismet/KismetMathLibrary.h"
 #include "Kismet/GameplayStatics.h"
 #include "PickupActor.h"
+#include "Ocean_GameMode.h"
 
 // Sets default values for this component's properties
 UPlayerInteractionComponent::UPlayerInteractionComponent()
@@ -86,6 +87,12 @@ void UPlayerInteractionComponent::Interact()
 		Pickup->Destroy();
 		GemsCollected++;
 		UE_LOG(LogTemp, Warning, TEXT("Gem Picked up!"));
+
+		if (AllGemsCollected())
+		{
+			AOcean_GameMode* GMode = Cast<AOcean_GameMode>(GetWorld()->GetAuthGameMode());
+			GMode->EndGame();
+		}
 	}
 }
 

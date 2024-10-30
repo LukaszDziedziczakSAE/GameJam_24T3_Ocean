@@ -9,6 +9,7 @@
 #include "Kismet/KismetMathLibrary.h"
 #include "Camera/CameraComponent.h"
 #include "GameFramework/FloatingPawnMovement.h"
+#include "PlayerInteractionComponent.h"
 
 
 void AOcean_PlayerController::BeginPlay()
@@ -123,5 +124,10 @@ void AOcean_PlayerController::Elevation(const FInputActionValue& Value)
 
 void AOcean_PlayerController::Interact(const FInputActionValue& Value)
 {
-	UE_LOG(LogTemp, Warning, TEXT("Interaction Button Press"));
+	//UE_LOG(LogTemp, Warning, TEXT("Interaction Button Press"));
+
+	if (PlayerPawn != nullptr)
+	{
+		PlayerPawn->PlayerInteractionComponent->Interact();
+	}
 }

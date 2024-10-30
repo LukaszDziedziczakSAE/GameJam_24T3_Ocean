@@ -7,6 +7,7 @@
 #include "Kismet/KismetSystemLibrary.h"
 #include "Kismet/KismetMathLibrary.h"
 #include "Kismet/GameplayStatics.h"
+#include "PickupActor.h"
 
 // Sets default values for this component's properties
 UPlayerInteractionComponent::UPlayerInteractionComponent()
@@ -55,12 +56,34 @@ void UPlayerInteractionComponent::TickComponent(float DeltaTime, ELevelTick Tick
 		TraceParams
 	))
 	{
-		UE_LOG(LogTemp, Warning, TEXT("Hit %s"), *HitResult.GetActor()->GetName());
+		//UE_LOG(LogTemp, Warning, TEXT("Hit %s"), *HitResult.GetActor()->GetName());
+
+		APickupActor* PickupInFront = Cast<APickupActor>(HitResult.GetActor());
+
+		if (PickupInFront != nullptr && Pickup != PickupInFront)
+		{
+			Pickup = PickupInFront;
+		}
 	}
 
 	else
 	{
-		UE_LOG(LogTemp, Warning, TEXT("No Hit"));
+		//UE_LOG(LogTemp, Warning, TEXT("No Hit"));
+
+		if (Pickup != nullptr)
+		{
+			Pickup = nullptr;
+		}
+	}
+}
+
+void UPlayerInteractionComponent::Interact()
+{
+	if (Pickup != nullptr)
+	{
+		Pickup->Destroy();
+		GemsCollected++;
+		UE_LOG(LogTemp, Warning, TEXT("Gem Picked up!"));
 	}
 }
 

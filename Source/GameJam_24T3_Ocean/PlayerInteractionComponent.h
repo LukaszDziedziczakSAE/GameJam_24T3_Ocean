@@ -23,9 +23,15 @@ protected:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	float TraceLength;
 
+	class APickupActor* Pickup;
+
 public:	
 	// Called every frame
 	virtual void TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction) override;
 
-		
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	int GemsCollected;
+
+	UFUNCTION(BlueprintCallable)
+	void Interact();
 };

@@ -87,3 +87,8 @@ void UPlayerInteractionComponent::Interact()
 	}
 }
 
+bool UPlayerInteractionComponent::CanPickup()
+{	
+	return Pickup != nullptr;
+}
+

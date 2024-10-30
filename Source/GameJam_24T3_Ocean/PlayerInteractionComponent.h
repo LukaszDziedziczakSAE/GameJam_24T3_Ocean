@@ -34,4 +34,8 @@ public:
 
 	UFUNCTION(BlueprintCallable)
 	void Interact();
+
+	UFUNCTION(BlueprintPure)
+	bool CanPickup();
+
 };

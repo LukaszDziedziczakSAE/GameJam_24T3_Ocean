@@ -37,4 +37,10 @@ public:
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	class USphereComponent* Sphere;
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
+	FVector TargetLocation;
+
+	UFUNCTION(BlueprintCallable)
+	void AddMovement(FVector Movement);
 };

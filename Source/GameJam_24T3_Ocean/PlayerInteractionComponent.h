@@ -32,6 +32,9 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	int GemsCollected;
 
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	int TotalGems;
+
 	UFUNCTION(BlueprintCallable)
 	void Interact();
 

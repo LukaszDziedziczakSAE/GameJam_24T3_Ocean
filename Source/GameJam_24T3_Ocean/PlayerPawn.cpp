@@ -29,6 +29,7 @@ void APlayerPawn::BeginPlay()
 {
 	Super::BeginPlay();
 	
+	TargetLocation = GetActorLocation();
 }
 
 // Called every frame
@@ -36,6 +37,12 @@ void APlayerPawn::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
 
+	//if (TargetLocation != GetActorLocation())
+	//{
+	//	//FVector TargetWorldPosition = FMath::Lerp(GetActorLocation(), TargetLocation, 0.1f);
+	//	FloatingPawnMovement->AddInputVector(TargetLocation);
+	//}
+	
 }
 
 // Called to bind functionality to input
@@ -43,5 +50,10 @@ void APlayerPawn::SetupPlayerInputComponent(UInputComponent* PlayerInputComponen
 {
 	Super::SetupPlayerInputComponent(PlayerInputComponent);
 
+}
+
+void APlayerPawn::AddMovement(FVector Movement)
+{
+	FloatingPawnMovement->AddInputVector(Movement);
 }
 

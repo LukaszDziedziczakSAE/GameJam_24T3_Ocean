@@ -81,8 +81,14 @@ void AOcean_PlayerController::Move(const FInputActionValue& Value)
 
 	if (PlayerPawn != nullptr)
 	{
-		PlayerPawn->FloatingPawnMovement->AddInputVector(PlayerPawn->Camera->GetForwardVector() * Value.Get<FVector2D>().Y);
-		PlayerPawn->FloatingPawnMovement->AddInputVector(PlayerPawn->Camera->GetRightVector() * Value.Get<FVector2D>().X);
+		//PlayerPawn->FloatingPawnMovement->AddInputVector(PlayerPawn->Camera->GetForwardVector() * Value.Get<FVector2D>().Y);
+		//PlayerPawn->FloatingPawnMovement->AddInputVector(PlayerPawn->Camera->GetRightVector() * Value.Get<FVector2D>().X);
+
+		FVector Forward = PlayerPawn->Camera->GetForwardVector() * Value.Get<FVector2D>().Y;
+		FVector Right = PlayerPawn->Camera->GetRightVector() * Value.Get<FVector2D>().X;
+
+		//PlayerPawn->TargetLocation += (Forward + Right);
+		PlayerPawn->AddMovement(Forward + Right);
 
 		/*PlayerPawn->AddMovementInput(
 			PlayerCharacter->Camera->GetForwardVector(),
@@ -118,7 +124,10 @@ void AOcean_PlayerController::Elevation(const FInputActionValue& Value)
 
 	if (PlayerPawn != nullptr)
 	{
-		PlayerPawn->FloatingPawnMovement->AddInputVector(PlayerPawn->Camera->GetUpVector() * Value.Get<float>());
+		//PlayerPawn->FloatingPawnMovement->AddInputVector(PlayerPawn->Camera->GetUpVector() * Value.Get<float>());
+
+		FVector Up = PlayerPawn->Camera->GetUpVector() * Value.Get<float>();
+		PlayerPawn->AddMovement(Up);
 	}
 }
 

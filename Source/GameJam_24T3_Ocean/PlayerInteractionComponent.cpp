@@ -88,6 +88,15 @@ void UPlayerInteractionComponent::Interact()
 		GemsCollected++;
 		UE_LOG(LogTemp, Warning, TEXT("Gem Picked up!"));
 
+		if (UpgradeLevel < UpgradeThreshholds.Num())
+		{
+			if (GemsCollected >= UpgradeThreshholds[UpgradeLevel])
+			{
+				UpgradeLevel++;
+				UpgradeAirLevel.Broadcast();
+			}
+		}
+
 		if (AllGemsCollected())
 		{
 			AOcean_GameMode* GMode = Cast<AOcean_GameMode>(GetWorld()->GetAuthGameMode());

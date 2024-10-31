@@ -6,6 +6,8 @@
 #include "Components/ActorComponent.h"
 #include "PlayerInteractionComponent.generated.h"
 
+DECLARE_DYNAMIC_MULTICAST_DELEGATE(FUpgradeAirLevelDelegate);
+
 
 UCLASS( ClassGroup=(Custom), meta=(BlueprintSpawnableComponent) )
 class GAMEJAM_24T3_OCEAN_API UPlayerInteractionComponent : public UActorComponent
@@ -35,6 +37,12 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	int TotalGems;
 
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
+	int UpgradeLevel;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	TArray<int> UpgradeThreshholds;
+
 	UFUNCTION(BlueprintCallable)
 	void Interact();
 
@@ -44,5 +52,6 @@ public:
 	UFUNCTION(BlueprintPure)
 	bool AllGemsCollected();
 
-
+	UPROPERTY(BlueprintAssignable)
+	FUpgradeAirLevelDelegate UpgradeAirLevel;
 };

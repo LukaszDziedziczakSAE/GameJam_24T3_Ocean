@@ -6,6 +6,7 @@
 #include "GameFramework/FloatingPawnMovement.h"
 #include "Components/SphereComponent.h"
 #include "PlayerInteractionComponent.h"
+#include "Components/AudioComponent.h"
 
 // Sets default values
 APlayerPawn::APlayerPawn()
@@ -23,6 +24,10 @@ APlayerPawn::APlayerPawn()
 	Camera->SetupAttachment(Sphere);
 
 	PlayerInteractionComponent = CreateDefaultSubobject<UPlayerInteractionComponent>(TEXT("Player Interaction Component"));
+
+	AudioComponent = CreateDefaultSubobject<UAudioComponent>(TEXT("Audio Component"));
+	AudioComponent->SetupAttachment(Sphere);
+
 
 }
 

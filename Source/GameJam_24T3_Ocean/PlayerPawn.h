@@ -46,4 +46,13 @@ public:
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	float MovementDampening{ 0.05f };
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	UAudioComponent* AudioComponent;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	USoundBase* BreathingSound;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	USoundBase* ChockingSound;
 };

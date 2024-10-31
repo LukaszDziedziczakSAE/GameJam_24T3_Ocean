@@ -24,6 +24,12 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	class USphereComponent* Sphere;
 
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	USoundBase* PickupSound;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	UAudioComponent* AudioComponent;
+
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;

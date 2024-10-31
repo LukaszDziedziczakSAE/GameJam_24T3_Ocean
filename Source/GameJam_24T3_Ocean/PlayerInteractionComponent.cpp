@@ -84,7 +84,6 @@ void UPlayerInteractionComponent::Interact()
 {
 	if (Pickup != nullptr)
 	{
-		Pickup->Destroy();
 		GemsCollected++;
 		UE_LOG(LogTemp, Warning, TEXT("Gem Picked up!"));
 
@@ -102,6 +101,13 @@ void UPlayerInteractionComponent::Interact()
 			AOcean_GameMode* GMode = Cast<AOcean_GameMode>(GetWorld()->GetAuthGameMode());
 			GMode->EndGame();
 		}
+
+		if (Pickup->PickupSound != nullptr)
+		{
+			UGameplayStatics::PlaySoundAtLocation(GetWorld(), Pickup->PickupSound, Pickup->GetActorLocation());
+		}
+		
+		Pickup->Destroy();
 	}
 }
 

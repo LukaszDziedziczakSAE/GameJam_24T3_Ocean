@@ -3,6 +3,7 @@
 
 #include "PickupActor.h"
 #include "Components/SphereComponent.h"
+#include "Components/AudioComponent.h"
 
 // Sets default values
 APickupActor::APickupActor()
@@ -19,6 +20,8 @@ APickupActor::APickupActor()
 	Sphere = CreateDefaultSubobject<USphereComponent>(TEXT("Sphere"));
 	Sphere->SetupAttachment(RootComp);
 
+	AudioComponent = CreateDefaultSubobject<UAudioComponent>(TEXT("Audio Component"));
+	AudioComponent->SetupAttachment(RootComp);
 }
 
 // Called when the game starts or when spawned
